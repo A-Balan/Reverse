@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>JSMini</title>
+    <title>Reverse</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -26,8 +26,8 @@
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="/index.html">
-                    <img src="/img/starmark.png" height="30" alt="dev logo" />
-                    App Name
+                    <img src="/img/bird.png" height="30" alt="dev logo" />
+                    Reverse
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -47,13 +47,13 @@
                             <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">The Repository(link)</a>
+                            <a class="nav-link" href="https://github.com/A-Balan/Reverse">The Repository</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://abalan.netlify.app/">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Blog link</a>
+                            <a class="nav-link" href="#">Blog</a>
                         </li>
                     </ul>
                 </div>
@@ -68,28 +68,53 @@
             <div class="col-12 col-md-8">
                 <pre class="line-numbers">
                     <code class="language-js">
-                        function displayMessage() {
-
-                            let inputBox = document.getElementById("message");
+                        // takes in and controlls the other functions
+                        function getValues() {
+                            let userString = document.getElementById('userString').value;
                         
-                            let message = inputBox.value;
+                            let revString = reverseString(userString);
                         
-                            Swal.fire(
-                                {
-                                    backdrop: false,
-                                    title: "App Name",
-                                    text: message
-                                }
-                            );
+                            displayString(revString);
+                        
+                        }
+                        // model of data
+                        function reverseString(input) {
+                            // input ='apple' strArray = ['a' 'p' 'p' 'l' 'e']
+                            let revString = '';
+                        
+                            for (let index = input.length - 1; index >= 0; index--) {
+                        
+                                let letter = input[index];
+                        
+                                revString = revString + letter;
+                            }
+                        
+                            return revString;
+                            }
+                        
+                        // view
+                        function displayString(output) {
+                            document.getElementById('results').textContent = output;
+                        
+                            let alertBox = document.getElementById('alert');
+                        
+                            alertBox.classList.remove('invisible');
                         }
                     </code>
                 </pre>
             </div>
             <div class="col-12 col-md-4">
-            <p>The code is structured in one function</p>
-            <h5>displayMessage</h5>
-            <p>Shows a SweetAlert with the value of the <code>message</code> variable</p>
-        </div>
+                <h5>Walkthrough</h5>
+                <ul>
+                    <li>The controller function takes in user input and directs it to the following functions</li>
+                    <li>The logic function makes a model of our data. Here we are reversing a string (which is by default an array)</li>
+                    <li>The array is formed by processing each item in the array through a decrementing for-loop</li>
+                    <li>The letters are set to each index of the array (starting at index 0)</li>
+                    <li>Our resulting string is incremented letter by letter and returned to the controller function</li>
+                    <li>The resulting string is then passed through the view function, where we target our output area by its ID</li>
+                    <li>Our output is going into an alert section, which is invisible until JS runs and removes the class 'invisible'</li>
+                </ul>
+            </div>
         </div>
     </main>
 
@@ -119,12 +144,12 @@
     <script src="/js/prism.js"></script>
 
     <script> Prism.plugins.NormalizeWhitespace.setDefaults({
-        'remove-trailing':true,
-        'remove-indent': true,
-        'left-trim': true,
-        'right-trim': true
+            'remove-trailing': true,
+            'remove-indent': true,
+            'left-trim': true,
+            'right-trim': true
         })
-        </script>
+    </script>
 </body>
 
 </html>

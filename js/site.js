@@ -1,14 +1,32 @@
-function displayMessage() {
+// takes in and controlls the other functions
+function getValues() {
+    let userString = document.getElementById('userString').value;
 
-    let inputBox = document.getElementById("message");
+    let revString = reverseString(userString);
 
-    let message = inputBox.value;
+    displayString(revString);
 
-    Swal.fire(
-        {
-            backdrop: false,
-            title: "App Name",
-            text: message
-        }
-    );
+}
+// model of data
+function reverseString(input) {
+    // input ='apple' strArray = ['a' 'p' 'p' 'l' 'e']
+    let revString = '';
+
+    for (let index = input.length - 1; index >= 0; index--) {
+
+        let letter = input[index];
+
+        revString = revString + letter;
+    }
+
+    return revString;
+    }
+
+// view
+function displayString(output) {
+    document.getElementById('results').textContent = output;
+
+    let alertBox = document.getElementById('alert');
+
+    alertBox.classList.remove('invisible');
 }
